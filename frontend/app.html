@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <h1>Save for the future</h1>
+  <p></p>
+  <section id="netSalary" class="bg-green-500 inline-block p-3 rounded text-lg text-center ">
+    <h2>Net Salary</h2>
+    <p id="netSalaryAmount" class="text-center text-lg">0</p>
+    <br>
+  </section>
+  <section id="totalExpense" class="bg-red-400 inline-block p-3 rounded text-lg text-center">
+    <h2>Total Expense</h2>
+    <p id="totalExpenseAmount" class="text-center text-lg">0</p>
+    <br>
+  </section>
+  <section id="salary" class="bg-blue-300 inline-block p-3 rounded text-lg text-center">
+    <h2>Salary</h2>
+    <p id="salaryAmount" class="text-center text-lg">0</p>
+    <label for="salary">
+      <input type="number" name="salary" placeholder="Enter your salary amount" class="border-2 border-black rounded-md p-2">
+      <button type="submit">Add Salary</button>
+    </label>
+    <br>
+    <br>
+  </section>
+  <section id="expense" class="bg-green-500 inline-block p-3 rounded text-lg text-center ml-16 mt-48">
+    <h2 class="text-white">Expense</h2>
+    <p id="expenseAmount" class="text-center text-lg">0</p>
+    <label for="expense">
+    <input type="number" name="expense" placeholder="Enter your expense amount" class="border-2 border-black rounded-md p-2">
+    <button type="submit">Add Expense</button>
+    </label>
+    <ul id="expenseList"></ul>
+    <li id="expenseItem">Expense 1</li>
+    <br>
+  </section>
+  
+  <section id="category-section" class="bg-blue-300 mt-72">
+    <h2>Categories</h2>
+    <form id="categoryForm">
+      <input type="text" name="categoryName" placeholder="Name" class="border-2 border-black rounded-md p-2" required>
+      <input type="text" name="description" placeholder="Description" class="border-2 border-black rounded-md p-2">
+      <input type="text" name="icon" placeholder="Icon" class="border-2 border-black rounded-md p-2">
+      <input type="color" name="color">
+      <select name="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button type="submit">Add Category</button>
+    </form>
+    <ul id="categoryList"></ul>
+  </section>
+</body>
+</html>
+
