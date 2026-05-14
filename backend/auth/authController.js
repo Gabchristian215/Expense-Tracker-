@@ -1,6 +1,4 @@
 import User from "./userSchema.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -36,8 +34,18 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
       //1) check if username and password exist
-
+      const {username, password} = req.body;
+      
+       if (!username || !password){
+        res.status(400).json({
+            status: "error",
+            message: "invaild username or password",
+            error: e.message
+        })
+       }
+       const currentUser = await User.findById({username})
       // 2) check if user exist && password is correct
+      
 
       //3 if everything is ok, send token
 
