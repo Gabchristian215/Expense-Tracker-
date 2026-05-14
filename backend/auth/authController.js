@@ -45,15 +45,22 @@ export const login = async (req, res) => {
        const currentUser = await User.findOne({username}).select('+password');
        console.log(currentUser);
       // 2) check if user exist && password is correct
-         if (!currentUser || !password){
-            return res.status(401).json({
-                status: "error",
-                message: "invalid username or password"
-            });
-         }
+      if(!currentUser ||!(await currentUser.correctPassword(password, currentUser.password))){
+        return res.status(400).json({
+            status: "error",
+            message: "invaild username or password",
+        });
+      }
+         // checks if user && bcrypt password(written password and database) password is correct
+         // return failed res if not
       
 
       //3 if everything is ok, send token
+
+
+      res.status(200).json({
+        status: "success"
+      })
 
     } catch(e){
         res.status(400).json({

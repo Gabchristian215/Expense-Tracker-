@@ -31,6 +31,10 @@ const userSchema = new Schema({
  this.password = await bcrypt.hash(this.password, 12);
  }) // hash the password before its stored in DB
 
-const User = mongoose.model("user", userSchema)
+ // a function that compare database password with userpassword with bcrypt
+ userSchema.methods.correctPassword = async function(enterPassword, dbPassword){
+  return bcrypt.compare(enterPassword, dbPassword);
+ }
+const User = mongoose.model("user", userSchema);
 
 export default User;
