@@ -37,14 +37,20 @@ export const login = async (req, res) => {
       const {username, password} = req.body;
       
        if (!username || !password){
-        res.status(400).json({
+        return res.status(400).json({
             status: "error",
             message: "invaild username or password",
-            error: e.message
-        })
+        });
        }
-       const currentUser = await User.findById({username})
+       const currentUser = await User.findOne({username}).select('+password');
+       console.log(currentUser);
       // 2) check if user exist && password is correct
+         if (!currentUser || !password){
+            return res.status(401).json({
+                status: "error",
+                message: "invalid username or password"
+            });
+         }
       
 
       //3 if everything is ok, send token

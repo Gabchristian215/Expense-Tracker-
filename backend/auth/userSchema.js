@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const {Schema} = mongoose;
+import bcrypt from "bcrypt"
 
 const userSchema = new Schema({
     email: {
@@ -25,6 +26,10 @@ const userSchema = new Schema({
     createdAt: Date
 
 })
+ userSchema.pre('save', async function(next) {
+  if(!this.isModified("password")) return next();
+ this.password = await bcrypt.hash(this.password, 12);
+ }) // hash the password before its stored in DB
 
 const User = mongoose.model("user", userSchema)
 
