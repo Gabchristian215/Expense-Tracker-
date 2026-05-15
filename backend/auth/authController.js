@@ -1,5 +1,6 @@
 import User from "./userSchema.js";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 dotenv.config();
 
 export const signup = async (req, res) => {
@@ -10,12 +11,15 @@ export const signup = async (req, res) => {
     password: req.body.password,
     confirmedPassword: req.body.confirmedPassword
 
-    //add token
  })
+ //add token
+ const token = jwt.sign({id:newUser._id}, process.env.JWT_SECRET, {expiresIn:process.env.JWTEXPIRESIN});
+ console.log(token);
  res.status(201).json({
     status: "success",
     data: {
-        user: newUser
+        user: newUser,
+        token
     }
  })
     } catch(e){
@@ -51,15 +55,14 @@ export const login = async (req, res) => {
             message: "invaild username or password",
         });
       }
-         // checks if user && bcrypt password(written password and database) password is correct
-         // return failed res if not
       
 
       //3 if everything is ok, send token
-
+      const token = jwt.sign({id:currentUser._id}, process.env.JWT_SECRET, {expiresIn:process.env.JWTEXPIRESIN});
 
       res.status(200).json({
-        status: "success"
+        status: "success",
+        token
       })
 
     } catch(e){
