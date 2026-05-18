@@ -10,7 +10,7 @@ export const signup = async (req, res) => {
     username: req.body.username,
     password: req.body.password,
     confirmedPassword: req.body.confirmedPassword
-
+// hide passwords so it doesnt show in database
  })
  //add token
  const token = jwt.sign({id:newUser._id}, process.env.JWT_SECRET, {expiresIn:process.env.JWTEXPIRESIN});

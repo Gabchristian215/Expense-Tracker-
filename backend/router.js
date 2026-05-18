@@ -2,7 +2,13 @@ import express from "express";
 const router = express.Router();
 import Salary, {Expense, Category} from "./salaryschema.js";
 import {signup, login} from "./auth/authController.js";
+import {requestLogin} from "./auth/authMiddleware.js";
 
+router.post("/signup", signup);
+router.post("/login", login);
+
+// 2. Everything below must pass requestLogin
+router.use(requestLogin);
 
 router.post("/addSalary", async (req, res) =>{
     try{
@@ -106,8 +112,4 @@ router.delete("/deleteCategory/:id", async (req, res) => {
     }
 })
 
-
-router.post("/signup", signup); 
-
-router.post("/login", login);
 export default router;
