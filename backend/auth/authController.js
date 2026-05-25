@@ -5,16 +5,27 @@ dotenv.config();
 
 export const signup = async (req, res) => {
     try{
+        const {email, username, password, confirmedPassword} = req.body;
+        
+ if(password !== confirmedPassword){
+    return res.status(400).json({
+        status: "error",
+        message: "Passwords do not match please make sure they match!",
+ })
+}
  const newUser = await User.create({
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
     confirmedPassword: req.body.confirmedPassword
-// hide passwords so it doesnt show in database
+// hide passwords so it doesnt show in database!!
  })
+ 
  //add token
  const token = jwt.sign({id:newUser._id}, process.env.JWT_SECRET, {expiresIn:process.env.JWTEXPIRESIN});
- console.log(token);
+
+ 
+
  res.status(201).json({
     status: "success",
     data: {

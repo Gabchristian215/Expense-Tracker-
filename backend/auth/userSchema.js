@@ -17,11 +17,13 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 8,
+        select: false,
     },
     confirmedPassword:{
         type: String,
         required: true,
         minlength: 8,
+        select: false,
     },
     createdAt: Date
 
@@ -29,6 +31,7 @@ const userSchema = new Schema({
  userSchema.pre('save', async function(next) {
   if(!this.isModified("password")) return next();
  this.password = await bcrypt.hash(this.password, 12);
+ this.confirmedPassword = undefined;
  }) // hash the password before its stored in DB
 
  // a function that compare database password with userpassword with bcrypt

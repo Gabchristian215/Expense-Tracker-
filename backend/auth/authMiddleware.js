@@ -11,10 +11,11 @@ export const requestLogin = async (req, res, next) => {
         req.headers.authorization.startsWith("Bearer")
     ) {
         try {
+            //get token from user
             token = req.headers.authorization.split(" ")[1];
-
+             // verify token 
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
+            // get user from the token
             const currentUser = await User.findById(decoded.id);
             if (!currentUser) {
                 return res.status(401).json({
@@ -34,7 +35,7 @@ export const requestLogin = async (req, res, next) => {
             });
         }
     }
-
+       // end token no access
     return res.status(401).json({
         status: "error",
         message: "You are not logged in. Please log in to get access.",
