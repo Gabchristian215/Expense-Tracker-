@@ -1,2 +1,3 @@
 # Expense-Tracker-
-This is a simple expense tracker that solidify the fundamentals of basic auth and basic server this project is ment to test with no ai at all no pain no gain
+Simple expense tracker that you can use to watch and monitor your finances 
+was made for a friend. 
