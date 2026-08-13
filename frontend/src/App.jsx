@@ -55,102 +55,118 @@ function App() {
 
   return (
     <main className="auth">
-      <section className="auth__panel" aria-labelledby="elite-heading">
-        <header className="brand">
-          <LogoPlaceholder />
-          <h1 id="elite-heading" className="brand__title">
-            Elite
-          </h1>
-          <p className="brand__tagline">
-            {isSignup ? 'Create your account to get started.' : 'Welcome back. Sign in to continue.'}
-          </p>
-        </header>
+      <div className="auth__left">
+        <div className="auth__panel-wrap">
+          <section className="auth__panel" aria-labelledby="elite-heading">
+            <header className="brand">
+              <LogoPlaceholder />
+              <h1 id="elite-heading" className="brand__title">
+                Elite
+              </h1>
+              <p className="brand__tagline">
+                {isSignup ? 'Create your account to get started.' : 'Welcome back. Sign in to continue.'}
+              </p>
+            </header>
 
-        <div className="mode-toggle" role="tablist" aria-label="Authentication mode">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={!isSignup}
-            className={!isSignup ? 'mode-toggle__btn is-active' : 'mode-toggle__btn'}
-            onClick={() => handleModeChange('login')}
-          >
-            Log in
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={isSignup}
-            className={isSignup ? 'mode-toggle__btn is-active' : 'mode-toggle__btn'}
-            onClick={() => handleModeChange('signup')}
-          >
-            Sign up
-          </button>
+            <div className="mode-toggle" role="tablist" aria-label="Authentication mode">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={!isSignup}
+                className={!isSignup ? 'mode-toggle__btn is-active' : 'mode-toggle__btn'}
+                onClick={() => handleModeChange('login')}
+              >
+                Log in
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={isSignup}
+                className={isSignup ? 'mode-toggle__btn is-active' : 'mode-toggle__btn'}
+                onClick={() => handleModeChange('signup')}
+              >
+                Sign up
+              </button>
+            </div>
+
+            <form className="auth-form" key={mode} onSubmit={handleSubmit}>
+              {isSignup && (
+                <label className="field">
+                  <span>Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    autoComplete="email"
+                    required
+                    placeholder="you@example.com"
+                  />
+                </label>
+              )}
+
+              <label className="field">
+                <span>Username</span>
+                <input
+                  type="text"
+                  name="username"
+                  value={form.username}
+                  onChange={handleChange}
+                  autoComplete="username"
+                  required
+                  placeholder="your username"
+                />
+              </label>
+
+              <label className="field">
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  autoComplete={isSignup ? 'new-password' : 'current-password'}
+                  required
+                  placeholder="••••••••"
+                />
+              </label>
+
+              {isSignup && (
+                <label className="field">
+                  <span>Confirm password</span>
+                  <input
+                    type="password"
+                    name="confirmedPassword"
+                    value={form.confirmedPassword}
+                    onChange={handleChange}
+                    autoComplete="new-password"
+                    required
+                    placeholder="••••••••"
+                  />
+                </label>
+              )}
+
+              <button type="submit" className="submit">
+                {isSignup ? 'Create account' : 'Log in'}
+              </button>
+
+              {message && <p className="auth-form__message">{message}</p>}
+            </form>
+          </section>
         </div>
+      </div>
 
-        <form className="auth-form" key={mode} onSubmit={handleSubmit}>
-          {isSignup && (
-            <label className="field">
-              <span>Email</span>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                autoComplete="email"
-                required
-                placeholder="you@example.com"
-              />
-            </label>
-          )}
+      <div className="auth__divider" aria-hidden="true" />
 
-          <label className="field">
-            <span>Username</span>
-            <input
-              type="text"
-              name="username"
-              value={form.username}
-              onChange={handleChange}
-              autoComplete="username"
-              required
-              placeholder="your username"
-            />
-          </label>
-
-          <label className="field">
-            <span>Password</span>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              autoComplete={isSignup ? 'new-password' : 'current-password'}
-              required
-              placeholder="••••••••"
-            />
-          </label>
-
-          {isSignup && (
-            <label className="field">
-              <span>Confirm password</span>
-              <input
-                type="password"
-                name="confirmedPassword"
-                value={form.confirmedPassword}
-                onChange={handleChange}
-                autoComplete="new-password"
-                required
-                placeholder="••••••••"
-              />
-            </label>
-          )}
-
-          <button type="submit" className="submit">
-            {isSignup ? 'Create account' : 'Log in'}
-          </button>
-
-          {message && <p className="auth-form__message">{message}</p>}
-        </form>
-      </section>
+      <aside className="auth__right">
+        <p className="auth__slogan">
+          watch
+          <span className="auth__slogan-break" />
+          profit
+          <span className="auth__slogan-break" />
+          repeat
+        </p>
+      </aside>
     </main>
   )
 }
