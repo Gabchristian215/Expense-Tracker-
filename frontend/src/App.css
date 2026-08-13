@@ -15,12 +15,12 @@
 .auth__panel-wrap {
   display: grid;
   place-items: center;
-  transform: rotate(-90deg);
+  width: 100%;
   animation: rise-in 0.55s ease both;
 }
 
 .auth__panel {
-  width: min(72vh, 420px);
+  width: min(100%, 420px);
   padding: 40px 32px 36px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -198,11 +198,11 @@
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: rotate(-90deg) scale(0.985);
+    transform: translateY(18px) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: rotate(-90deg) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -220,20 +220,12 @@
 @media (max-width: 900px) {
   .auth {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1px auto;
+    grid-template-rows: auto 1px auto;
   }
 
   .auth__left {
     order: 1;
     padding: 24px 16px;
-  }
-
-  .auth__panel-wrap {
-    transform: none;
-  }
-
-  .auth__panel {
-    width: min(100%, 420px);
   }
 
   .auth__divider {
@@ -250,16 +242,5 @@
 
   .auth__slogan {
     font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  @keyframes rise-in {
-    from {
-      opacity: 0;
-      transform: translateY(18px) scale(0.985);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
   }
 }
