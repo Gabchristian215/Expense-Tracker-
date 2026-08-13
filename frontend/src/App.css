@@ -1,38 +1,246 @@
-.dashboard {
+.auth {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  overflow: hidden;
+}
+
+.auth__left {
+  display: grid;
+  place-items: center;
+  padding: 32px 24px;
+  overflow: hidden;
+}
+
+.auth__panel-wrap {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  animation: rise-in 0.55s ease both;
+}
+
+.auth__panel {
+  width: min(100%, 520px);
+  padding: 40px 40px 36px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.auth__divider {
+  width: 1px;
+  background: #000;
+  min-height: 100%;
+}
+
+.auth__right {
+  display: grid;
+  place-items: center;
+  padding: 48px 32px;
+}
+
+.auth__slogan {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--ink);
+  text-transform: lowercase;
+  text-align: center;
+  animation: fade-up 0.6s ease 0.12s both;
+}
+
+.auth__slogan-break {
+  display: block;
+  height: 0.35em;
+}
+
+.brand {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  flex: 1;
-  width: 100%;
-  padding: 40px 32px;
-  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  animation: fade-up 0.6s ease 0.08s both;
 }
 
-.dashboard__title {
-  margin: 0;
-  font-size: 36px;
-  letter-spacing: -1px;
-  text-align: left;
-}
-
-.dashboard__boxes {
+.brand__logo {
+  width: 64px;
+  height: 64px;
+  color: var(--accent-deep);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  width: 100%;
+  place-items: center;
 }
 
-@media (max-width: 768px) {
-  .dashboard {
-    padding: 24px 16px;
-    gap: 20px;
-  }
+.brand__logo svg {
+  width: 100%;
+  height: 100%;
+}
 
-  .dashboard__title {
-    font-size: 28px;
-  }
+.brand__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.75rem, 8vw, 3.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--ink);
+}
 
-  .dashboard__boxes {
+.brand__tagline {
+  margin: 0;
+  max-width: 28ch;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 6px;
+  margin-bottom: 24px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.55);
+  animation: fade-up 0.6s ease 0.16s both;
+}
+
+.mode-toggle__btn {
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mode-toggle__btn:hover {
+  color: var(--ink);
+}
+
+.mode-toggle__btn.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fade-up 0.45s ease both;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.field input::placeholder {
+  color: #8a9a93;
+}
+
+.submit {
+  margin-top: 8px;
+  border: 0;
+  background: var(--accent-deep);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 13px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.submit:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.submit:active {
+  transform: translateY(0);
+}
+
+.auth-form__message {
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--accent-deep);
+  animation: fade-up 0.35s ease both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .auth {
     grid-template-columns: 1fr;
+    grid-template-rows: auto 1px auto;
+  }
+
+  .auth__left {
+    order: 1;
+    padding: 24px 16px;
+  }
+
+  .auth__divider {
+    order: 2;
+    width: 100%;
+    height: 1px;
+    min-height: 1px;
+  }
+
+  .auth__right {
+    order: 3;
+    padding: 40px 24px 48px;
+  }
+
+  .auth__slogan {
+    font-size: clamp(2rem, 10vw, 3rem);
   }
 }
