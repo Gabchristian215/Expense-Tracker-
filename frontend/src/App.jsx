@@ -11,10 +11,10 @@ const initialForm = {
 function LogoPlaceholder() {
   return (
     <div className="brand__logo" aria-hidden="true">
-      <svg viewBox="0 0 48 48" role="img">
-        <rect x="2" y="2" width="44" height="44" rx="12" fill="currentColor" opacity="0.12" />
+      <svg viewBox="0 0 64 64" role="img">
+        <rect x="2" y="2" width="60" height="60" rx="14" fill="currentColor" opacity="0.14" />
         <path
-          d="M14 30V18h6.2c3.1 0 5.1 1.6 5.1 4.1 0 1.7-.9 3-2.4 3.6l3.3 4.3h-4.1l-2.9-3.9h-1.6V30H14zm4.1-6.5h1.8c1.3 0 2.1-.7 2.1-1.8s-.8-1.7-2.1-1.7h-1.8v3.5zM28.2 30l4.1-12h4.4l4.1 12h-4l-.7-2.2h-3.2L32.2 30h-4zm5.4-5.1h2.2l-1.1-3.5-1.1 3.5z"
+          d="M20 18h24v5.5H27.2V29h14.3v5.2H27.2V40.5H44V46H20V18z"
           fill="currentColor"
         />
       </svg>
